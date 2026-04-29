@@ -1,0 +1,484 @@
+<robot
+  name="tank">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.000108524182377716 -0.0902990594185242 0.103208198426333"
+        rpy="0 0 0" />
+      <mass
+        value="0.601600157707464" />
+      <inertia
+        ixx="0.000505576859179843"
+        ixy="1.46950197406681E-08"
+        ixz="-8.69613423387717E-12"
+        iyy="0.000337220178000293"
+        iyz="-1.27464867949561E-07"
+        izz="0.000697907468491316" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="0.00499999999999998 2.22044604925031E-16 2.62723870436687E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.103868907109313" />
+      <inertia
+        ixx="0.000171708287065082"
+        ixy="-7.08934587225641E-19"
+        ixz="3.40544321211376E-20"
+        iyy="8.67197177584521E-05"
+        iyz="-2.7631389141895E-34"
+        izz="8.67197177584521E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightwheel"
+    type="continuous">
+    <origin
+      xyz="0.0848249872388515 -0.159816940607637 0.0574499999999974"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="-0.00499999999999991 2.4980018054066E-16 -1.56819002228303E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.103868907109312" />
+      <inertia
+        ixx="0.000171708287065082"
+        ixy="-7.359543827722E-19"
+        ixz="1.76742618868712E-21"
+        iyy="8.67197177584521E-05"
+        iyz="-1.63619081435316E-35"
+        izz="8.6719717758452E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftwheel"
+    type="continuous">
+    <origin
+      xyz="-0.0851750127611487 -0.159816940607636 0.0574500000000015"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="banh_dan_dong_trai">
+    <inertial>
+      <origin
+        xyz="0.00499999999999998 -5.55111512312578E-17 8.67361737988404E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.103868907109313" />
+      <inertia
+        ixx="0.000171708287065082"
+        ixy="-7.1690874188323E-19"
+        ixz="3.24686946983214E-20"
+        iyy="8.67197177584522E-05"
+        iyz="-2.8266535187949E-34"
+        izz="8.67197177584521E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/banh_dan_dong_trai.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/banh_dan_dong_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banhdandongtrai"
+    type="continuous">
+    <origin
+      xyz="-0.0991750127611473 -0.0116823353048084 0.05755"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_dan_dong_trai" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="lidar">
+    <inertial>
+      <origin
+        xyz="-1.29757316003065E-15 6.51605505663788E-17 -0.00457887144189027"
+        rpy="0 0 0" />
+      <mass
+        value="0.00319215300114559" />
+      <inertia
+        ixx="2.18569137230852E-07"
+        ixy="4.70988568996397E-22"
+        ixz="7.51261257123066E-25"
+        iyy="8.69531442161916E-08"
+        iyz="4.84629312118416E-24"
+        izz="2.7361198023536E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="-0.000175012761146634 -0.0870967209817709 0.122466815589433"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera">
+    <inertial>
+      <origin
+        xyz="-0.00117819293604169 0.0173989447073359 0.00900130287593785"
+        rpy="0 0 0" />
+      <mass
+        value="0.00827936767688675" />
+      <inertia
+        ixx="1.08061936654004E-06"
+        ixy="1.97042592918232E-08"
+        ixz="1.96963583456045E-08"
+        iyy="8.2969788252791E-07"
+        iyz="-2.82950264207049E-07"
+        izz="7.09371776486622E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0574668155894326"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="5"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="prismatic">
+    <inertial>
+      <origin
+        xyz="2.87917391697118E-05 0.0526201488979757 0.00158552735898043"
+        rpy="0 0 0" />
+      <mass
+        value="0.0930996208354306" />
+      <inertia
+        ixx="0.000168501130943866"
+        ixy="2.14940445237952E-11"
+        ixz="-3.09659639537977E-08"
+        iyy="4.49018685905745E-05"
+        iyz="1.64722797721107E-11"
+        izz="0.000209740976030147" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/prismatic.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/prismatic.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prismatic_joint"
+    type="prismatic">
+    <origin
+      xyz="-0.000175012761147599 -0.0870967209817715 0.198092664567826"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="prismatic" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.03"
+      upper="0.03"
+      effort="50"
+      velocity="0.01" />
+  </joint>
+  <link
+    name="revolt_joint">
+    <inertial>
+      <origin
+        xyz="-0.00374993354854962 0.0301861089970053 0.0035"
+        rpy="0 0 0" />
+      <mass
+        value="0.0252446010528494" />
+      <inertia
+        ixx="1.7870968887505E-05"
+        ixy="1.81988369150149E-06"
+        ixz="2.55836890381603E-25"
+        iyy="3.44739955007039E-06"
+        iyz="8.11433088326687E-23"
+        izz="2.11122041956438E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/revolt_joint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/revolt_joint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="revoltjoint"
+    type="revolute">
+    <origin
+      xyz="0 0.1 -0.012"
+      rpy="0 0 0" />
+    <parent
+      link="prismatic" />
+    <child
+      link="revolt_joint" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="5"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="banh_dan_dong_phai">
+    <inertial>
+      <origin
+        xyz="-0.005 4.1633E-17 6.0715E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.10387" />
+      <inertia
+        ixx="0.00017171"
+        ixy="-7.4092E-19"
+        ixz="5.6469E-22"
+        iyy="8.672E-05"
+        iyz="5.6469E-21"
+        izz="8.672E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/banh_dan_dong_phai.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank/meshes/banh_dan_dong_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banhdandongphai"
+    type="continuous">
+    <origin
+      xyz="0.0998249872388527 -0.0117323353048101 0.0575"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_dan_dong_phai" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  
+</robot>

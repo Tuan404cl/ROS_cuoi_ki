@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<robot name="tank" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  
+  <material name="gray">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="light_blue">
+    <color rgba="0.79 0.82 0.93 1.0"/>
+  </material>
+
+  <xacro:property name="wheel_mass" value="0.10387"/>
+  <xacro:property name="base_mass" value="0.6016"/>
+
+  <xacro:macro name="wheel_inertial">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="${wheel_mass}" />
+      <inertia ixx="0.00017171" ixy="0" ixz="0" iyy="8.672e-05" iyz="0" izz="8.672e-05" />
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="tank_wheel" params="name parent xyz rpy mesh_file joint_type axis_xyz">
+    <link name="${name}">
+      <xacro:wheel_inertial />
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://tank/meshes/${mesh_file}" />
+        </geometry>
+        <material name="light_blue"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://tank/meshes/${mesh_file}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="${joint_type}">
+      <origin xyz="${xyz}" rpy="${rpy}" />
+      <parent link="${parent}" />
+      <child link="${name}" />
+      <axis xyz="${axis_xyz}" />
+    </joint>
+  </xacro:macro>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0001 -0.0903 0.1032" rpy="0 0 0" />
+      <mass value="${base_mass}" />
+      <inertia ixx="0.000505" ixy="0" ixz="0" iyy="0.000337" iyz="0" izz="0.000697" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://tank/meshes/base_link.STL" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://tank/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <xacro:tank_wheel name="right_wheel" parent="base_link" 
+                    xyz="0.0848 -0.1598 0.0574" rpy="0 0 0" 
+                    mesh_file="right_wheel.STL" joint_type="continuous" axis_xyz="-1 0 0"/>
+
+  <xacro:tank_wheel name="left_wheel" parent="base_link" 
+                    xyz="-0.0852 -0.1598 0.0574" rpy="0 0 0" 
+                    mesh_file="left_wheel.STL" joint_type="continuous" axis_xyz="-1 0 0"/>
+
+  <xacro:tank_wheel name="banh_dan_dong_trai" parent="base_link" 
+                    xyz="-0.0992 -0.0117 0.0575" rpy="0 0 0" 
+                    mesh_file="banh_dan_dong_trai.STL" joint_type="continuous" axis_xyz="1 0 0"/>
+
+  <xacro:tank_wheel name="banh_dan_dong_phai" parent="base_link" 
+                    xyz="0.0998 -0.0117 0.0575" rpy="0 0 0" 
+                    mesh_file="banh_dan_dong_phai.STL" joint_type="continuous" axis_xyz="1 0 0"/>
+<xacro:macro name="safe_inertial" params="mass">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+    </inertial>
+  </xacro:macro>
+<link name="lidar">
+    <xacro:safe_inertial mass="0.01" /> <visual>
+      <geometry><mesh filename="package://tank/meshes/lidar.STL" /></geometry>
+      <material name="light_blue"/>
+    </visual>
+    </link>
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="-0.00017 -0.0871 0.1225" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar" />
+  </joint>
+
+  <link name="camera">
+    <xacro:safe_inertial mass="0.01" /> <visual>
+      <geometry><mesh filename="package://tank/meshes/camera.STL" /></geometry>
+      <material name="light_blue"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="package://tank/meshes/camera.STL" /></geometry>
+    </collision>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0 0 0.0575" rpy="0 0 1.5708" /> <parent link="base_link" />
+    <child link="camera" />
+  </joint>
+
+  <link name="prismatic">
+    <xacro:safe_inertial mass="0.01" /> <visual>
+      <geometry><mesh filename="package://tank/meshes/prismatic.STL" /></geometry>
+      <material name="light_blue"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="package://tank/meshes/prismatic.STL" /></geometry>
+    </collision>
+  </link>
+  <joint name="prismatic_joint" type="prismatic">
+    <origin xyz="-0.00017 -0.0871 0.1981" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="prismatic" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.03" upper="0.03" effort="50" velocity="0.01" />
+  </joint>
+
+  <link name="revolt_joint">
+    <xacro:safe_inertial mass="0.01" /> <visual>
+      <geometry><mesh filename="package://tank/meshes/revolt_joint.STL" /></geometry>
+      <material name="light_blue"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="package://tank/meshes/revolt_joint.STL" /></geometry>
+    </collision>
+  </link>
+  <joint name="revoltjoint" type="revolute">
+    <origin xyz="0 0.1 -0.012" rpy="0 0 0" />
+    <parent link="prismatic" />
+    <child link="revolt_joint" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5" velocity="0.5" />
+  </joint>
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      
+      <update_rate>50</update_rate>
+      
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      
+      <wheel_separation>0.17</wheel_separation>
+      <wheel_diameter>0.115</wheel_diameter>
+      
+      <max_wheel_torque>200</max_wheel_torque>
+      <max_wheel_acceleration>20.0</max_wheel_acceleration>
+      
+      <command_topic>cmd_vel</command_topic>
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <publish_wheel_joint_state>true</publish_wheel_joint_state> 
+      <publish_odom>true</publish_odom>
+
+    </plugin>
+  </gazebo>
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <joint name="prismatic_joint">
+      <command_interface name="position">
+        <param name="min">-0.03</param>
+        <param name="max">0.03</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="revoltjoint">
+      <command_interface name="position">
+        <param name="min">-1.57</param>
+        <param name="max">1.57</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <parameters>$(find tank)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+  <gazebo reference="lidar">
+    <sensor name="lidar_sensor" type="ray">
+      <visualize>true</visualize>
+      <update_rate>10.0</update_rate>
+      
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>12.0</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      
+      <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>lidar</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+<gazebo>
+    <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <ros>
+        <remapping>~/out:=joint_states</remapping>
+      </ros>
+      <update_rate>50</update_rate>
+      
+      <joint_name>banh_dan_dong_trai_joint</joint_name>
+      <joint_name>banh_dan_dong_phai_joint</joint_name>
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>right_wheel_joint</joint_name>
+      
+      <joint_name>lidar_joint</joint_name>
+      <joint_name>prismatic_joint</joint_name>
+      
+      <joint_name>revoltjoint</joint_name>
+      
+    </plugin>
+  </gazebo>
+  <gazebo reference="camera">
+    <sensor type="camera" name="tank_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov> 
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
