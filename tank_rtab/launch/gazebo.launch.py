@@ -12,7 +12,7 @@ def generate_launch_description():
     pkg_path = get_package_share_directory(package_name)
     
     # Map
-    world_path = os.path.join(pkg_path, 'worlds', 'tank_world.world')
+    world_path = os.path.join(pkg_path, 'worlds', 'bookstore.world')
     
     # 1. Xử lý file Xacro
     xacro_file = os.path.join(pkg_path, 'urdf', 'tank.urdf.xacro')
@@ -35,11 +35,18 @@ def generate_launch_description():
 
     # 4. Spawn Robot
     spawn_entity = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-topic', 'robot_description', '-entity', 'tank_robot','-x', '0.0', '-y', '0.0', '-z', '0'],
-        output='screen'
-    )
+    package='gazebo_ros',
+    executable='spawn_entity.py',
+    arguments=[
+        '-topic', 'robot_description', 
+        '-entity', 'tank_robot',
+        '-x', '-2.3', 
+        '-y', '6.2', 
+        '-z', '0.05',  # Nên để cao hơn 0.0 một chút (5cm) để tránh robot bị kẹt vào sàn khi vừa spawn
+        '-Y', '-1.72'  # Thêm tham số -Y (viết hoa) để định hướng robot quay đúng hướng
+    ],
+    output='screen'
+)
 
     # ---------- PHẦN BỔ SUNG: KÍCH HOẠT CONTROLLERS ----------
     load_joint_state_broadcaster = Node(
