@@ -1,3 +1,9 @@
+-------------------------------------------------------------------------------
+2D
+------------------------------------------------------------------------------
+                            slam_toolbox
+tank_ws //khong gian workspace
+
 colcon build --packages-select tank
 source install/setup.bash
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank/share
@@ -14,4 +20,54 @@ chmod +x src/tank/scripts/keyboard_control.py //cap quyen de chay
 python3 src/tank/scripts/keyboard_control.py
 
 sudo apt install ros-humble-laser-filters // cai thu vien
+
+------------------------------------------------------------------------------
+                            gmapping
+//Do gmapping la mot thu vien thu 3 nen chung ta khong the sudo apt nhu binh thuong duoc va chung ta bat buoc phai build tu src code
+//
+rosdep update
+rosdep install -i --from-path src --rosdistro humble -y
+
+
+cd ~/tank_ws
+colcon build --packages-select slam_gmapping
+colcon build --packages-select tank_gmapping
+source install/setup.bash
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank_gmapping/share
+export GAZEBO_MODEL_PATH=~/tank_ws/src/tank_gmapping/worlds/models:$GAZEBO_MODEL_PATH
+ros2 launch tank_gmapping gazebo.launch.py
+
+------------------------------------------------------------------------------
+3D
+-------------------------------------------------------------------------------
+                                RTAB map packages
+
+                                
+colcon build --packages-select tank_rtab
+source install/setup.bash
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank_rtab/share
+export GAZEBO_MODEL_PATH=~/tank_ws/src/tank_rtab/worlds/models:$GAZEBO_MODEL_PATH
+ros2 launch tank_rtab gazebo.launch.py   // luu y nho cai rtab truoc khi chay 
+
+//Neu da build san file src/tank roi thi khong can thiet phai chay lenh rieng nua chayj lenh chung deu duoc
+
+
+
+--------------------------------------------------------------------------------
+                                ORB SLAM2 map packages //Dang loi khong su dung duoi moi hinh thuc
+// thu vien can cai dat
+sudo apt update
+sudo apt update
+sudo apt install cmake gcc g++ git
+sudo apt install libpython2.7-dev libglew-dev
+sudo apt install libopencv-dev python3-opencv
+sudo apt install libeigen3-dev
+
+
+colcon build --packages-select tank_orb
+source install/setup.bash
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank_orb/share
+export GAZEBO_MODEL_PATH=~/tank_ws/src/tank_orb/worlds/models:$GAZEBO_MODEL_PATH
+ros2 launch tank_orb gazebo.launch.py
+
 
