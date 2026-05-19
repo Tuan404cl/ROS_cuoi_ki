@@ -30,6 +30,7 @@ rosdep install -i --from-path src --rosdistro humble -y
 
 
 cd ~/tank_ws
+colcon build --packages-select openslam_gmapping
 colcon build --packages-select slam_gmapping
 colcon build --packages-select tank_gmapping
 source install/setup.bash
@@ -70,4 +71,9 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank_orb/share
 export GAZEBO_MODEL_PATH=~/tank_ws/src/tank_orb/worlds/models:$GAZEBO_MODEL_PATH
 ros2 launch tank_orb gazebo.launch.py
 
-
+----------------------------------------------------------
+CATOR
+colcon build --packages-select tank_cator3d
+source install/setup.bash
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/tank_ws/install/tank_cator3d/share
+ros2 launch tank_cator3d gazebo.launch.py
