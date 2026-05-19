@@ -1,0 +1,610 @@
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="tank">
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.000117009108905573 -0.0898904038898457 0.104325917340533"
+        rpy="0 0 0" />
+      <mass
+        value="0.689603808166615" />
+      <inertia
+        ixx="0.00080763553769268"
+        ixy="8.99817780673109E-07"
+        ixz="-8.69613423372968E-12"
+        iyy="0.000664556124598713"
+        iyz="-1.2746486794956E-07"
+        izz="0.00132693541172566" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <!--collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/base_link.STL" />
+      </geometry>
+    </collision-->
+  </link>
+  <joint
+    name="revoltjoint"
+    type="revolute">
+    <origin
+      xyz="0 0.1 -0.012"
+      rpy="0 0 0" />
+    <parent
+      link="prismatic" />
+    <child
+      link="revolt_joint" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="0.005 2.2204E-16 2.6272E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.10387" />
+      <inertia
+        ixx="0.00017171"
+        ixy="-7.0837E-19"
+        ixz="3.4054E-20"
+        iyy="8.672E-05"
+        iyz="-2.7431E-34"
+        izz="8.672E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightwheel"
+    type="continuous">
+    <origin
+      xyz="0.084825 -0.15982 0.05745"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="-0.005 2.498E-16 -1.5682E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.10387" />
+      <inertia
+        ixx="0.00017171"
+        ixy="-7.3539E-19"
+        ixz="1.7674E-21"
+        iyy="8.672E-05"
+        iyz="-1.7365E-35"
+        izz="8.672E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftwheel"
+    type="continuous">
+    <origin
+      xyz="-0.085175 -0.15982 0.05745"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="banh_dan_dong_trai">
+    <inertial>
+      <origin
+        xyz="0.005 -5.5511E-17 8.6736E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.10387" />
+      <inertia
+        ixx="0.00017171"
+        ixy="-7.1691E-19"
+        ixz="3.2469E-20"
+        iyy="8.672E-05"
+        iyz="-2.8031E-34"
+        izz="8.672E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/banh_dan_dong_trai.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/banh_dan_dong_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banhdandongtrai"
+    type="continuous">
+    <origin
+      xyz="-0.099175 -0.011682 0.05755"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_dan_dong_trai" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="imu_link">
+    <inertial>
+      <origin
+        xyz="0 -8.67361737988404E-19 -0.00457887144189027"
+        rpy="0 0 0" />
+      <mass
+        value="0.00319215300114559" />
+      <inertia
+        ixx="2.18569137230852E-07"
+        ixy="4.64117112526284E-22"
+        ixz="-6.23095753075911E-24"
+        iyy="8.69531442161915E-08"
+        iyz="1.85979602644886E-24"
+        izz="2.7361198023536E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/imu_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/imu_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00017501 -0.087097 0.12247"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera">
+    <inertial>
+      <origin
+        xyz="-0.0011782 0.017399 0.0090013"
+        rpy="0 0 0" />
+      <mass
+        value="0.0082794" />
+      <inertia
+        ixx="1.0806E-06"
+        ixy="1.9704E-08"
+        ixz="1.9696E-08"
+        iyy="8.297E-07"
+        iyz="-2.8295E-07"
+        izz="7.0937E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.057467"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="5"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="prismatic">
+    <inertial>
+      <origin
+        xyz="2.87917391697118E-05 0.0526201488979757 0.00158552735898043"
+        rpy="0 0 0" />
+      <mass
+        value="0.0930996208354306" />
+      <inertia
+        ixx="0.000168501130943866"
+        ixy="2.14940445237828E-11"
+        ixz="-3.09659639537976E-08"
+        iyy="4.49018685905745E-05"
+        iyz="1.64722797723311E-11"
+        izz="0.000209740976030147" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/prismatic.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/prismatic.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prismatic"
+    type="prismatic">
+    <origin
+      xyz="-0.00017501 -0.087097 0.19809"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="prismatic" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.03"
+      upper="0.03"
+      effort="50"
+      velocity="0.01" />
+  </joint>
+  <link
+    name="revolt_joint">
+    <inertial>
+      <origin
+        xyz="-0.0037499 0.030186 0.0035"
+        rpy="0 0 0" />
+      <mass
+        value="0.025245" />
+      <inertia
+        ixx="1.7871E-05"
+        ixy="1.8199E-06"
+        ixz="2.5584E-25"
+        iyy="3.4474E-06"
+        iyz="8.1143E-23"
+        izz="2.1112E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/revolt_joint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/revolt_joint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="revoltjoint"
+    type="revolute">
+    <origin
+      xyz="0 0.1 -0.012"
+      rpy="0 0 0" />
+    <parent
+      link="prismatic" />
+    <child
+      link="revolt_joint" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="5"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="banh_dan_dong_phai">
+    <inertial>
+      <origin
+        xyz="-0.005 4.1633E-17 6.9389E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.10387" />
+      <inertia
+        ixx="0.00017171"
+        ixy="-7.4064E-19"
+        ixz="5.6469E-22"
+        iyy="8.672E-05"
+        iyz="7.9056E-21"
+        izz="8.672E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/banh_dan_dong_phai.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/banh_dan_dong_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banhdandongphai"
+    type="continuous">
+    <origin
+      xyz="0.099825 -0.011732 0.0575"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_dan_dong_phai" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="lidar1_link">
+    <inertial>
+      <origin
+        xyz="0 0 -0.0025"
+        rpy="0 0 0" />
+      <mass
+        value="0.0035343" />
+      <inertia
+        ixx="2.0617E-07"
+        ixy="0"
+        ixz="2.5612E-40"
+        iyy="2.0617E-07"
+        iyz="-3.5873E-40"
+        izz="3.9761E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/lidar1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/lidar1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar1_joint"
+    type="continuous">
+    <origin
+      xyz="0.068501 -0.021456 0.11947"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar1_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="lidar2_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/lidar2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tank_cator3d/meshes/lidar2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar2_joint"
+    type="continuous">
+    <origin
+      xyz="-0.068851 -0.15274 0.11947"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar2_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
